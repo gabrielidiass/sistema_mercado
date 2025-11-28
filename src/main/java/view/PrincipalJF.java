@@ -31,7 +31,7 @@ public class PrincipalJF extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         miVendedor = new javax.swing.JMenuItem();
         miCliente = new javax.swing.JMenuItem();
-        miVeiculo = new javax.swing.JMenuItem();
+        miProduto = new javax.swing.JMenuItem();
         miVenda = new javax.swing.JMenu();
         miTelaVenda = new javax.swing.JMenuItem();
 
@@ -39,50 +39,50 @@ public class PrincipalJF extends javax.swing.JFrame {
 
         jMenu1.setText("Cadastro");
 
-        miVendedor.setText("Funcionario");
-        miVendedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miVendedorActionPerformed(evt);
-            }
-        });
-        jMenu1.add(miVendedor);
+//        miVendedor.setText("Funcionario");
+//        miVendedor.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                miVendedorActionPerformed(evt);
+//            }
+//        });
+//        jMenu1.add(miVendedor);
+//
+//        miCliente.setText("Cliente");
+//        miCliente.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                miClienteActionPerformed(evt);
+//            }
+//        });
+//        jMenu1.add(miCliente);
 
-        miCliente.setText("Cliente");
-        miCliente.addActionListener(new java.awt.event.ActionListener() {
+        miProduto.setText("Produto");
+        miProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miClienteActionPerformed(evt);
+                miProdutoActionPerformed(evt);
             }
         });
-        jMenu1.add(miCliente);
-
-        miVeiculo.setText("Veículo");
-        miVeiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miVeiculoActionPerformed(evt);
-            }
-        });
-        jMenu1.add(miVeiculo);
+        jMenu1.add(miProduto);
 
         jMenuBar1.add(jMenu1);
-
-        miVenda.setText("Compra");
-        miVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miVendaActionPerformed(evt);
-            }
-        });
-
-        miTelaVenda.setText("Realizar Compra");
-        miTelaVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miTelaVendaActionPerformed(evt);
-            }
-        });
-        miVenda.add(miTelaVenda);
-
-        jMenuBar1.add(miVenda);
-
-        setJMenuBar(jMenuBar1);
+//
+//        miVenda.setText("Compra");
+//        miVenda.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                miVendaActionPerformed(evt);
+//            }
+//        });
+//
+//        miTelaVenda.setText("Realizar Compra");
+//        miTelaVenda.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                miTelaVendaActionPerformed(evt);
+//            }
+//        });
+//        miVenda.add(miTelaVenda);
+//
+//        jMenuBar1.add(miVenda);
+//
+//        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,29 +98,29 @@ public class PrincipalJF extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void miVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVendedorActionPerformed
-        ListaVendedorJF telaVendedor = new ListaVendedorJF();
-        telaVendedor.setVisible(true);
-    }//GEN-LAST:event_miVendedorActionPerformed
+//    private void miVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVendedorActionPerformed
+//        ListaVendedorJF telaVendedor = new ListaVendedorJF();
+//        telaVendedor.setVisible(true);
+//    }//GEN-LAST:event_miVendedorActionPerformed
+//
+//    private void miClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miClienteActionPerformed
+//        ListaClienteJF telaCliente = new ListaClienteJF();
+//        telaCliente.setVisible(true);
+//    }//GEN-LAST:event_miClienteActionPerformed
 
-    private void miClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miClienteActionPerformed
-        ListaClienteJF telaCliente = new ListaClienteJF();
-        telaCliente.setVisible(true);
-    }//GEN-LAST:event_miClienteActionPerformed
-
-    private void miVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVeiculoActionPerformed
-        ListaVeiculoJF telaVeiculo = new ListaVeiculoJF();
-        telaVeiculo.setVisible(true);
-    }//GEN-LAST:event_miVeiculoActionPerformed
-
-    private void miVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVendaActionPerformed
-        
-    }//GEN-LAST:event_miVendaActionPerformed
-
-    private void miTelaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miTelaVendaActionPerformed
-        ListaVendas telaVendas = new ListaVendas();
-        telaVendas.setVisible(true);
-    }//GEN-LAST:event_miTelaVendaActionPerformed
+    private void miProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miProdutoActionPerformed
+        ListaProdutoJF telaProduto = new ListaProdutoJF();
+        telaProduto.setVisible(true);
+    }//GEN-LAST:event_miProdutoActionPerformed
+//
+//    private void miVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVendaActionPerformed
+//
+//    }//GEN-LAST:event_miVendaActionPerformed
+//
+//    private void miTelaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miTelaVendaActionPerformed
+//        ListaVendas telaVendas = new ListaVendas();
+//        telaVendas.setVisible(true);
+//    }//GEN-LAST:event_miTelaVendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,7 +162,7 @@ public class PrincipalJF extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem miCliente;
     private javax.swing.JMenuItem miTelaVenda;
-    private javax.swing.JMenuItem miVeiculo;
+    private javax.swing.JMenuItem miProduto;
     private javax.swing.JMenu miVenda;
     private javax.swing.JMenuItem miVendedor;
     // End of variables declaration//GEN-END:variables

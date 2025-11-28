@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import model.*;
 import model.Produto;
 import model.dao.ClienteDAO;
-import model.dao.VeiculoDAO;
+import model.dao.ProdutoDAO;
 import model.dao.VendedorDAO;
 
 /**
@@ -23,7 +23,7 @@ public class CadastroCompraJD extends javax.swing.JDialog {
 
     ClienteDAO daoCliente;
     VendedorDAO daoVendedor;
-    VeiculoDAO daoVeiculo;
+    ProdutoDAO daoVeiculo;
     
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     
@@ -36,7 +36,7 @@ public class CadastroCompraJD extends javax.swing.JDialog {
         initComponents();
         
         daoCliente = new ClienteDAO();
-        daoVeiculo = new VeiculoDAO();
+        daoVeiculo = new ProdutoDAO();
         daoVendedor = new VendedorDAO();
         
         loadFormaPgto();

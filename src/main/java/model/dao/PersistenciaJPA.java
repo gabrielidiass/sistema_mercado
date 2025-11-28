@@ -11,10 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author vanessalagomachado
- */
 public class PersistenciaJPA implements InterfaceBD {
 
     EntityManager entity;
@@ -23,7 +19,7 @@ public class PersistenciaJPA implements InterfaceBD {
     public PersistenciaJPA() {
         //parametro: é o nome da unidade de persistencia (Persistence Unit)
         factory
-                = Persistence.createEntityManagerFactory("pu_concessionaria");
+                = Persistence.createEntityManagerFactory("pu_sistema_mercado");
         //conecta no bd e executa a estratégia de geração.
         entity = factory.createEntityManager();
     }
