@@ -12,6 +12,7 @@ public class ListaProdutoJF extends javax.swing.JFrame {
 
     public ListaProdutoJF() {
         initComponents();
+        
         dao = new ProdutoDAO();
         loadTabelaProdutos();
     }
@@ -28,41 +29,62 @@ public class ListaProdutoJF extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        // ---------- MODELO CORRIGIDO ----------
         tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {},
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
             new String [] {
-                "ID", "Nome", "Categoria", "Quantidade", "Valor"
+                "Nome", "Categoria", "Quantidade", "Valor"
             }
         ) {
             Class[] types = new Class [] {
-                Long.class, String.class, String.class, Integer.class, Double.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tblProdutos);
 
         btnNovo.setText("Novo");
-        btnNovo.addActionListener(evt -> btnNovoActionPerformed(evt));
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
-        btnEditar.addActionListener(evt -> btnEditarActionPerformed(evt));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 System.out.println("Erro ao remover produto: ");
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnRemover.setText("Remover");
-        btnRemover.addActionListener(evt -> btnRemoverActionPerformed(evt));
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
 
         btnInfo.setText("Mais Informações");
-        btnInfo.addActionListener(evt -> btnInfoActionPerformed(evt));
+        btnInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInfoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,16 +93,16 @@ public class ListaProdutoJF extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnNovo)
                         .addGap(18, 18, 18)
                         .addComponent(btnEditar)
                         .addGap(18, 18, 18)
                         .addComponent(btnRemover)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnInfo)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,39 +120,17 @@ public class ListaProdutoJF extends javax.swing.JFrame {
 
         pack();
     }
+ private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {
+      
+       if(tblProdutos.getSelectedRow() != -1){
 
-    // ----------------- BOTÃO NOVO -----------------
-
-    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {
-        CadastroProdutoJD telaCadastro = new CadastroProdutoJD(this, true);
-        telaCadastro.setVisible(true);
-
-        Produto novoProduto = telaCadastro.getProduto();
-
-        if (novoProduto != null) {
-            try {
-                dao.persist(novoProduto);
-            } catch (Exception ex) {
-                System.out.println("Erro ao cadastrar: " + ex);
-            }
-            loadTabelaProdutos();
-        }
-    }
-
-    // ----------------- BOTÃO EDITAR -----------------
-
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {
-
-        int linha = tblProdutos.getSelectedRow();
-
-        if (linha != -1) {
-
-            Long id = (Long) tblProdutos.getValueAt(linha, 0);
+            Long id = (Long) tblProdutos.getModel().getValueAt(tblProdutos.getSelectedRow(), 0);
             Produto obj_produto = dao.buscarPorId(id).get();
 
-            // Abre a tela de edição
-            CadastroProdutoJD telaEdicao = new CadastroProdutoJD(this, true);
+
+            CadastroProdutoJD telaEdicao = new CadastroProdutoJD(this, rootPaneCheckingEnabled);
             telaEdicao.setProduto(obj_produto);
+
             telaEdicao.setVisible(true);
 
             try {
@@ -140,19 +140,27 @@ public class ListaProdutoJF extends javax.swing.JFrame {
             }
 
             loadTabelaProdutos();
-
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione um produto");
         }
     }
-
-    // ----------------- BOTÃO INFO -----------------
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {
+        CadastroProdutoJD telaCadastro = new CadastroProdutoJD(this, rootPaneCheckingEnabled);
+        telaCadastro.setVisible(true);
+        
+        Produto novoProduto = telaCadastro.getProduto();
+        try {
+            //JOptionPane.showMessageDialog(rootPane, novoProduto);
+            dao.persist(novoProduto);
+        } catch (Exception ex) {
+            System.out.println("Erro ao castrar "+ novoProduto.toString()+" \n Erro: "+ex);
+        }
+        loadTabelaProdutos();
+    }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
-        int linha = tblProdutos.getSelectedRow();
-
-        if (linha != -1) {
-            Long id = (Long) tblProdutos.getValueAt(linha, 0);
+        if(tblProdutos.getSelectedRow() != -1){
+            Long id = (Long) tblProdutos.getModel().getValueAt(tblProdutos.getSelectedRow(), 0);
             Produto obj_produto = dao.buscarPorId(id).get();
 
             JOptionPane.showMessageDialog(rootPane, obj_produto.exibirDados());
@@ -160,62 +168,57 @@ public class ListaProdutoJF extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Selecione um produto");
         }
     }
-
-    // ----------------- BOTÃO REMOVER -----------------
-
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {
-        int linha = tblProdutos.getSelectedRow();
+        if(tblProdutos.getSelectedRow() != -1){
 
-        if (linha != -1) {
-
-            Long id = (Long) tblProdutos.getValueAt(linha, 0);
+            Long id = (Long) tblProdutos.getModel().getValueAt(tblProdutos.getSelectedRow(), 0);
             Produto obj_produto = dao.buscarPorId(id).get();
 
             int op = JOptionPane.showConfirmDialog(rootPane,
-                "Deseja remover o produto " + obj_produto.getNome() + "?");
+                    "Deseja remover o produto " + obj_produto.getNome() + "?");
 
-            if (op == JOptionPane.YES_OPTION) {
+            if(op == JOptionPane.YES_OPTION){
                 try {
                     dao.remover(obj_produto);
                 } catch (Exception ex) {
-                    System.out.println("Erro ao remover: " + ex);
+                    System.out.println("Erro ao remover produto: " + ex);
                 }
 
                 JOptionPane.showMessageDialog(rootPane, "Produto removido com sucesso!");
                 loadTabelaProdutos();
             }
-
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione um produto");
         }
     }
-
-    // ----------------- CARREGAR TABELA -----------------
-
-    public void loadTabelaProdutos() {
-
-        DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
-        modelo.setNumRows(0);
-
-        for (Produto obj : dao.listaProdutos()) {
-            modelo.addRow(new Object[]{
-                obj.getId(),
-                obj.getNome(),
-                obj.getCategoria(),
-                obj.getQuantidade(),
-                obj.getValor()
-            });
-        }
-    }
+   
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new ListaProdutoJF().setVisible(true));
     }
 
+    public void loadTabelaProdutos(){
+
+        DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
+        modelo.setNumRows(0);
+
+        for(Produto obj: dao.listaProdutos()){
+            modelo.addRow(new Object[]{
+                    obj.getId(),
+                    obj.getNome(),
+                    obj.getCategoria(),
+                    obj.getQuantidade(),
+                    obj.getValor()
+            });
+        }
+    }
+
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnInfo;
+    
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnRemover;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblProdutos;
 }
+
