@@ -22,7 +22,7 @@ public class Funcionario extends Pessoa implements Serializable{
     private double salario;
     
     @Column(name = "funcionario_cargo", columnDefinition = "numeric(5,2)")
-    private double cargo;
+    private String cargo;
     
     public Funcionario(){
         compras = new ArrayList<>();
@@ -36,11 +36,11 @@ public class Funcionario extends Pessoa implements Serializable{
         this.salario = salario;
     }
 
-    public double getCargo() {
+    public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(double cargo) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 

@@ -60,7 +60,7 @@ public class Compra implements Serializable{
         this.valorCompra = valorCompra;
     }
 
-    public FormaPagamento setFormaPagamento() {
+    public FormaPagamento getFormaPagamento() {
         return formaPagamento;
     }
 

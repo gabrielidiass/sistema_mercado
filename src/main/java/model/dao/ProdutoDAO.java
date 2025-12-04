@@ -9,7 +9,7 @@ import model.Produto;
 
 public class ProdutoDAO extends PersistenciaJPA {
 
-    public List<Produto> listarProdutos() {
+    public List<Produto> listaProdutos() {
         EntityManager em = getEntityManager();
         try {
             TypedQuery<Produto> query =

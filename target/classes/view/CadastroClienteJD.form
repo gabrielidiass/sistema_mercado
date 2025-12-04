@@ -1,0 +1,56 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp jLabel1::l:p::p, par t:l::p {seq l {comp btnSalvar:::p:123:p, space s:::p, comp btnCancelar::::137:x}, seq l {par l {comp lblNome::l:p::p, comp jLabel2::l:p::p}, space :p:30:p, par l:::p {comp txtNome:::::x, comp txtCPF::::214:x}}, seq l {par l {comp jLabel3::l:p::p, comp jLabel4::l:p::p}, space s:::p, par l {comp txtTelefone:::::x, comp txtDtNascimento:::::x}}}}, space ::19:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp jLabel1:::p::p, space s:::p, par b {comp lblNome::b:p::p, comp txtNome::b:p::p}, space u:::p, par b {comp jLabel2::b:p::p, comp txtCPF::b:p::p}, space s:::p, par b {comp jLabel3::b:p::p, comp txtDtNascimento::b:p::p}, space s:::p, par t {comp jLabel4:::p::p, comp txtTelefone:::p::p}, space ::120:x, par b {comp btnSalvar::b:p::p, comp btnCancelar::b:p::p}, space :p:28:p}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 2
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jLabel1"
+				"text": "Cadastro de Cliente"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblNome"
+				"text": "Nome"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtNome"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jLabel2"
+				"text": "CPF"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtCPF"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jLabel3"
+				"text": "Data Nascimento"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtDtNascimento"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jLabel4"
+				"text": "Telefone"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtTelefone"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnSalvar"
+				"text": "Salvar"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnSalvarActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnCancelar"
+				"text": "Cancelar"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnCancelarActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) )
+	}
+}
