@@ -138,8 +138,7 @@ public final class ListaFuncionarioJF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-                       System.out.println("aaaaaaaaaaaaaaa");
-
+                      
         CadastroFuncionarioJD telaCadastro = new CadastroFuncionarioJD(this, rootPaneCheckingEnabled);
         telaCadastro.setVisible(true);
 

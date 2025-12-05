@@ -1,26 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 import model.Compra;
 import model.dao.CompraDAO;
 
-/**
- *
- * @author vanessalagomachado
- */
 public class ListaComprasJF extends javax.swing.JFrame {
 
     CompraDAO dao;
 
-    /**
-     * Creates new form ListaComprasJF
-     */
     public ListaComprasJF() {
         initComponents();
         dao = new CompraDAO();
@@ -38,8 +26,8 @@ public class ListaComprasJF extends javax.swing.JFrame {
             };
             modelo.addRow(linha);
         }
-
     }
+
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -67,12 +55,7 @@ public class ListaComprasJF extends javax.swing.JFrame {
         );
 
         tblCompras.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
+            new Object [][] {},
             new String [] {
                 "Data da compra", "Produto", "Cliente"
             }
@@ -80,43 +63,27 @@ public class ListaComprasJF extends javax.swing.JFrame {
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
-
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jScrollPane1.setViewportView(tblCompras);
 
         btnNovo.setText("Novo");
-        btnNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoActionPerformed(evt);
-            }
-        });
+        btnNovo.addActionListener(evt -> btnNovoActionPerformed(evt));
 
         btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
+        btnEditar.addActionListener(evt -> btnEditarActionPerformed(evt));
 
         btnRemover.setText("Remover");
-        btnRemover.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoverActionPerformed(evt);
-            }
-        });
+        btnRemover.addActionListener(evt -> btnRemoverActionPerformed(evt));
 
         btnInfo.setText("Mais Informações");
-        btnInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInfoActionPerformed(evt);
-            }
-        });
+        btnInfo.addActionListener(evt -> btnInfoActionPerformed(evt));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
+
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -135,6 +102,7 @@ public class ListaComprasJF extends javax.swing.JFrame {
                         .addComponent(btnInfo)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -154,9 +122,9 @@ public class ListaComprasJF extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {
         CadastroCompraJD telaCompra = new CadastroCompraJD(this, rootPaneCheckingEnabled);
         telaCompra.setVisible(true);
 
@@ -169,74 +137,60 @@ public class ListaComprasJF extends javax.swing.JFrame {
             } catch (Exception ex) {
                 System.err.println("Erro ao salvar nova Compra: " + novoObj + "\n Erro: " + ex);
             }
-
         }
-    }//GEN-LAST:event_btnNovoActionPerformed
+    }
 
-    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {
         if (tblCompras.getSelectedRow() != -1) {
             Compra obj = (Compra) tblCompras.getModel().getValueAt(tblCompras.getSelectedRow(), 0);
-            String txtCompra = "Compra: { produto" + obj.getProduto().getNome() + ", cliente: " + obj.getCliente().getNome() + ", vendedor: " + obj.getFuncionario().getNome() + "}";
-            int op_remover = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja remover " + txtCompra + "?");
-            if (op_remover == JOptionPane.YES_OPTION) {
+            String txtCompra = "Compra: { produto " + obj.getProduto().getNome() + ", cliente: " + obj.getCliente().getNome() + ", vendedor: " + obj.getFuncionario().getNome() + " }";
+            int op = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja remover " + txtCompra + "?");
+            if (op == JOptionPane.YES_OPTION) {
                 try {
                     dao.remover(obj);
                 } catch (Exception ex) {
                     System.out.println("Erro ao remover " + txtCompra + "\n Erro: " + ex);
                 }
-                JOptionPane.showMessageDialog(rootPane, "Compra removida com sucesso... ");
+                JOptionPane.showMessageDialog(rootPane, "Compra removida com sucesso...");
                 loadCompras();
             }
-
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione uma linha");
         }
-    }//GEN-LAST:event_btnRemoverActionPerformed
+    }
 
-    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoActionPerformed
+    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
         if (tblCompras.getSelectedRow() != -1) {
             Compra obj = (Compra) tblCompras.getModel().getValueAt(tblCompras.getSelectedRow(), 0);
             JOptionPane.showMessageDialog(rootPane, obj.exibirDados());
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione uma linha");
         }
-    }//GEN-LAST:event_btnInfoActionPerformed
+    }
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {
         if (tblCompras.getSelectedRow() != -1) {
             Compra obj = (Compra) tblCompras.getModel().getValueAt(tblCompras.getSelectedRow(), 0);
             CadastroCompraJD telaCompra = new CadastroCompraJD(this, rootPaneCheckingEnabled);
             telaCompra.setCompra(obj);
             telaCompra.setVisible(true);
 
-            // 2. recuperar o objeto Compra
             Compra compraEdt = telaCompra.getCompra();
 
-            // 3. Se o objeto não for null persistir no BD
             if (compraEdt != null) {
                 try {
                     dao.persist(compraEdt);
                 } catch (Exception ex) {
                     System.err.println("Erro ao editar Compra\n Erro: " + ex);
                 }
-
                 loadCompras();
             }
-
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione uma linha");
         }
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -244,26 +198,11 @@ public class ListaComprasJF extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaComprasJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaComprasJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaComprasJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaComprasJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        } catch (Exception ex) {}
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ListaComprasJF().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new ListaComprasJF().setVisible(true));
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel areaBusca;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnInfo;
@@ -272,5 +211,4 @@ public class ListaComprasJF extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblCompras;
-    // End of variables declaration//GEN-END:variables
 }
