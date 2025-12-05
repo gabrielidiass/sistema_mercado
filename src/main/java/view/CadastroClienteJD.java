@@ -8,16 +8,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.JOptionPane;
-import javax.swing.LayoutStyle;
+
 import model.Cliente;
 import model.dao.Util;
 
 public class CadastroClienteJD extends javax.swing.JDialog {
     private Cliente cliente;
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public CadastroClienteJD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -26,8 +24,10 @@ public class CadastroClienteJD extends javax.swing.JDialog {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     // Generated using JFormDesigner Evaluation license - unknown
+
     private void initComponents() {
         jLabel1 = new JLabel();
         lblNome = new JLabel();
@@ -37,75 +37,116 @@ public class CadastroClienteJD extends javax.swing.JDialog {
         btnSalvar = new JButton();
         btnCancelar = new JButton();
 
-        //======== this ========
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         var contentPane = getContentPane();
 
-        //---- jLabel1 ----
         jLabel1.setText("Cadastro de Cliente");
-
-        //---- lblNome ----
         lblNome.setText("Nome");
-
-        //---- jLabel2 ----
         jLabel2.setText("CPF");
 
-        //---- btnSalvar ----
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(e -> btnSalvarActionPerformed(e));
 
-        //---- btnCancelar ----
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(e -> btnCancelarActionPerformed(e));
 
-        GroupLayout contentPaneLayout = new GroupLayout(contentPane);
-        contentPane.setLayout(contentPaneLayout);
+        GroupLayout layout = new GroupLayout(contentPane);
+        contentPane.setLayout(layout);
 
-        contentPaneLayout.setVerticalGroup(
-            contentPaneLayout.createParallelGroup().addGroup(contentPaneLayout.createSequentialGroup().addContainerGap().addComponent(jLabel1).addGap(18, 18, 18).addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(lblNome).addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(jLabel2).addComponent(txtCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE).addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(btnSalvar).addComponent(btnCancelar)).addGap(28, 28, 28))
-        );
+        // ---- GRUPO HORIZONTAL ----
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                        .addComponent(jLabel1)
+                        .addGroup(
+                                layout.createSequentialGroup()
+                                        .addGap(20)
+                                        .addGroup(
+                                                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addComponent(lblNome)
+                                                        .addComponent(jLabel2))
+                                        .addGap(20)
+                                        .addGroup(
+                                                layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(txtNome, 200, 200, 200)
+                                                        .addComponent(txtCPF, 200, 200, 200))
+                                        .addGap(20))
+                        .addGroup(
+                                layout.createSequentialGroup()
+                                        .addGap(20)
+                                        .addComponent(btnSalvar)
+                                        .addGap(20)
+                                        .addComponent(btnCancelar)
+                                        .addGap(20)));
+
+        // ---- GRUPO VERTICAL ----
+        layout.setVerticalGroup(
+                layout.createSequentialGroup()
+                        .addGap(20)
+                        .addComponent(jLabel1)
+                        .addGap(20)
+                        .addGroup(
+                                layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblNome)
+                                        .addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                                                GroupLayout.PREFERRED_SIZE))
+                        .addGap(15)
+                        .addGroup(
+                                layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel2)
+                                        .addComponent(txtCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                                                GroupLayout.PREFERRED_SIZE))
+                        .addGap(30)
+                        .addGroup(
+                                layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnSalvar)
+                                        .addComponent(btnCancelar))
+                        .addGap(20));
+
         pack();
         setLocationRelativeTo(getOwner());
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }// GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
-        if(cliente == null)
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSalvarActionPerformed
+
+        if (cliente == null)
             cliente = new Cliente();
-        
-        try{
+
+        try {
             String cpf = txtCPF.getText().replace(".", "").replace("-", "");
             this.cliente.setNome(txtNome.getText().trim());
-            if(Util.validaCPF(cpf)){
+            if (Util.validaCPF(cpf)) {
                 this.cliente.setCPF(cpf);
             } else {
                 return;
             }
-            
+
             this.dispose();
-        } catch (DateTimeParseException e1){
+        } catch (DateTimeParseException e1) {
             cliente = null;
-            JOptionPane.showMessageDialog(rootPane, "Data inválida!! Informe data no formato dd-mm-yyyy\n"+e1);
-        }  catch (Exception e3){
+            JOptionPane.showMessageDialog(rootPane, "Data inválida!! Informe data no formato dd-mm-yyyy\n" + e1);
+        } catch (Exception e3) {
             cliente = null;
-            JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro inesperado: \n"+e3);
-        } 
-        
-        
-    }//GEN-LAST:event_btnSalvarActionPerformed
+            JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro inesperado: \n" + e3);
+        }
+
+    }// GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+         * look and feel.
+         * For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -115,18 +156,22 @@ public class CadastroClienteJD extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroClienteJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroClienteJD.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroClienteJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroClienteJD.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroClienteJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroClienteJD.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroClienteJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroClienteJD.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {

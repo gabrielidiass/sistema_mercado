@@ -2,6 +2,7 @@ package model.dao;
 
 import java.util.List;
 import java.util.Optional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -21,7 +22,7 @@ public class ProdutoDAO extends PersistenciaJPA {
         }
     }
 
-    public Optional<Produto> buscarPorId(Long id) {
+    public Optional<Produto> buscarPorId(int id) {
         EntityManager em = getEntityManager();
         try {
             TypedQuery<Produto> query = em.createQuery(

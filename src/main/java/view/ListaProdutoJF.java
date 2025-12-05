@@ -124,7 +124,7 @@ public class ListaProdutoJF extends javax.swing.JFrame {
       
        if(tblProdutos.getSelectedRow() != -1){
 
-            Long id = (Long) tblProdutos.getModel().getValueAt(tblProdutos.getSelectedRow(), 0);
+            int id = (int) tblProdutos.getModel().getValueAt(tblProdutos.getSelectedRow(), 0);
             Produto obj_produto = dao.buscarPorId(id).get();
 
 
@@ -160,7 +160,7 @@ public class ListaProdutoJF extends javax.swing.JFrame {
 
     private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
         if(tblProdutos.getSelectedRow() != -1){
-            Long id = (Long) tblProdutos.getModel().getValueAt(tblProdutos.getSelectedRow(), 0);
+            int id = (int) tblProdutos.getModel().getValueAt(tblProdutos.getSelectedRow(), 0);
             Produto obj_produto = dao.buscarPorId(id).get();
 
             JOptionPane.showMessageDialog(rootPane, obj_produto.exibirDados());
@@ -171,7 +171,7 @@ public class ListaProdutoJF extends javax.swing.JFrame {
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {
         if(tblProdutos.getSelectedRow() != -1){
 
-            Long id = (Long) tblProdutos.getModel().getValueAt(tblProdutos.getSelectedRow(), 0);
+            int id = (int) tblProdutos.getModel().getValueAt(tblProdutos.getSelectedRow(), 0);
             Produto obj_produto = dao.buscarPorId(id).get();
 
             int op = JOptionPane.showConfirmDialog(rootPane,
